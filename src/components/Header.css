@@ -1,0 +1,47 @@
+header {
+    align-items: center;
+    border: 2px solid #3a6ea5;
+    display: flex;
+    height: 5vh;
+    justify-content: space-between;
+    padding: 2px;
+}
+@media (max-height: 650px), screen and (max-width: 700px){
+header {
+    height: 10vh !important;
+}
+}
+.studentName, .subject {
+    color: green;
+    font-size: 15px;
+    font-weight: 700;
+}
+.studentID, .test-type {
+    color: #c00000;
+    font-size: 19px;
+    font-weight: 700;
+    text-align: center;
+}
+@media (max-height: 650px), screen and (max-width: 700px){
+.net-demo {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+}
+body {
+    font-family: Trebuchet MS;
+    margin: 0;
+    padding: 0;
+}
+.studentID, .test-type {
+    color: #c00000;
+    font-size: 19px;
+    font-weight: 700;
+    text-align: center;
+}
+.studentName, .subject {
+    color: green;
+    font-size: 15px;
+    font-weight: 700;
+}

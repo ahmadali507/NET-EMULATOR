@@ -1,0 +1,17 @@
+#second-section {
+    background-color: #bcdef5;
+    border: 2px solid #3a6ea5;
+    border-top: none;
+    height: 20px;
+    padding: 3px;
+}
+#second-section h4 {
+    color: #000;
+    display: inline-block;
+    margin: 0;
+}
+#second-section span {
+    color: blue;
+    font-size: 12pt;
+    font-weight: 700;
+}

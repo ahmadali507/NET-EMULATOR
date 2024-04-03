@@ -1,0 +1,206 @@
+#final-section {
+    background-color: #f0f8ff;
+    border: 2px solid #3a6ea5;
+    border-top: none;
+    display: flex;
+    flex-direction: column;
+}
+@media (max-height: 450px), (max-width: 750px)
+{.functionalities {
+    align-items: stretch;
+    flex-direction: column;
+}}
+.dropdown-container, .functionalities {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.functionalities {
+    justify-content: space-between;
+}
+
+@media (max-height: 450px), (max-width: 750px)
+{.dropdown, .dropdown-container {
+    margin-bottom: 10px;
+    margin-right: 0;
+    -webkit-transform: none;
+    transform: none;
+}}
+
+.dropdown-container {
+    justify-content: center;
+}
+.dropdown-container, .functionalities {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.countdown-box, .countdown-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.countdown-container {
+    border: 2px solid #000;
+    font-family: Open Sans, sans-serif;
+    font-weight: 600;
+}
+@media (max-height: 450px), (max-width: 750px)
+{.countdown-container {
+    margin: 10px;
+}}
+
+.countdown-box {
+    flex-direction: column;
+    margin: 0 3px;
+}
+
+.countdown-box, .countdown-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.countdown-box {
+    height: 50px;
+    margin-right: 5px;
+    width: 50px;
+}
+
+.countdown-number, .countdown-separator {
+    font-size: 1.5rem;
+}
+
+.countdown-number, .countdown-separator {
+    font-size: 1.5rem;
+}
+
+.countdown-separator {
+    font-size: 24px;
+    margin-right: 5px;
+}
+
+.countdown-box {
+    flex-direction: column;
+    margin: 0 3px;
+}
+
+.countdown-box, .countdown-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.countdown-box {
+    height: 50px;
+    margin-right: 5px;
+    width: 50px;
+}
+.countdown-number, .countdown-separator {
+    font-size: 1.5rem;
+}
+user agent stylesheet
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+.countdown-container {
+    border: 2px solid #000;
+    font-family: Open Sans, sans-serif;
+    font-weight: 600;
+}
+
+.countdown-number, .countdown-separator {
+    font-size: 1.5rem;
+}
+
+user agent stylesheet
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+.countdown-container {
+    border: 2px solid #000;
+    font-family: Open Sans, sans-serif;
+    font-weight: 600;
+}
+
+@media (max-height: 450px), (max-width: 750px)
+{.dropdown, .dropdown-container {
+    margin-bottom: 10px;
+    margin-right: 0;
+    -webkit-transform: none;
+    transform: none;
+}}
+
+.dropdown {
+    font-size: 16px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+option {
+    font-weight: normal;
+    display: block;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+    white-space: nowrap;
+}
+
+@media (max-height: 450px), (max-width: 750px)
+{.dropdown, .dropdown-container {
+    margin-bottom: 10px;
+    margin-right: 0;
+    -webkit-transform: none;
+    transform: none;
+}}
+.dropdown {
+    font-size: 16px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+@media (max-height: 450px), (max-width: 750px)
+{.buttons-container {
+    justify-content: center;
+}}
+.buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+@media (max-height: 450px), (max-width: 750px)
+{.buttons-container input[type=image] {
+    height: 50px;
+}}
+.buttons-container input[type=image] {
+    height: 60px;
+}
+
+.finish-test {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.finishing-paragraph {
+    color: blue;
+    display: inline-block;
+    font-family: Trebuchet MS;
+    margin: 0;
+    text-decoration: underline;
+}
+.finishing-paragraph span {
+    font-weight: 700;
+}
+
+#ending {
+    color: red;
+    margin: 6px 0;
+    text-align: center;
+}
+#ending span {
+    font-weight: 700;
+    text-decoration: underline;
+}
