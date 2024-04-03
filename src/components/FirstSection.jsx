@@ -46,7 +46,6 @@ const FirstSection = () => {
     
   }, [])
   
-  console.log(marks);
 
 
   return (

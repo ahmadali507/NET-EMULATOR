@@ -22,7 +22,7 @@ const FinalSection = () => {
   const { NoAttempted, setNoAttempted } = useContext(myContext);
   const { review, setReview, attemptedChoice, setAttemptedChoice } = useContext(myContext);
   const { selectedChoice, marks, setmarks } = useContext(myContext);
-  const { TotalMcqs } = useContext(myContext);
+  const { TotalMcqs, results, setResults } = useContext(myContext);
   // when the questionNo is initially zero the prev state is false. i.e. not active.
   const { arrayofQuestions } = useContext(myContext);
 
@@ -51,6 +51,14 @@ const FinalSection = () => {
     filtered = filtered.flat();
   }
 
+// segregating the current question then getting the title from the questions 
+const question = filtered[questionNo];
+// Finding the subject title associated with the question
+const subjectIndex = arrayofQuestions.findIndex((subject) =>
+    subject.Questions.some((q) => q.id === question.id)
+);
+const subjectTitle = arrayofQuestions[subjectIndex].title;
+console.log(subjectTitle)
 
   // writing the onclick to move the counter.
   const handlenextClick = () => {
@@ -137,10 +145,25 @@ const FinalSection = () => {
     // the user gets the mark only if the mcqs is not attempte first
     if ((filtered[questionNo].key === selectedChoice) && !(filtered[questionNo].attempted)) {
       setmarks(marks + 1);
-      filtered[questionNo].attempted = true;
+      
+      if(results[0]?.subject === subjectTitle){
+        setResults(results[0].score + 1); 
+      }
+      else if(results[1]?.subject === subjectTitle){
+        setResults(results[1].score + 1); 
+      }
+      else if(results[2]?.subject === subjectTitle){
+        setResults(results[2].score + 1); 
+      }
+      else if(results[3]?.subject === subjectTitle){
+        setResults(results[3].score + 1); 
+      }
     }
+    filtered[questionNo].attempted = true;
+  
   }
 
+  
   const handleReview = () => {
     setReview(false);
 
@@ -192,15 +215,12 @@ const FinalSection = () => {
           </div>
           <div className="buttons-container">
             {
-              console.log(questionNo)
 
             }
             {
-              console.log(filtered)
             }
             <div className="buttons-list">
-              {console.log(filtered[questionNo].attempted)
-               }
+               
               <input
                 type="image"
                 src={(filtered[questionNo].attempted) ? Save : ActiveSave}

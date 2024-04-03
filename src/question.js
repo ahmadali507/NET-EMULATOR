@@ -43,7 +43,7 @@ const arrayofQuestions = [
   },
   // second subject
   {
-    title: "Maths",
+    title: "Mathematics",
     noOfMcqs: 6,
     Questions: [
       {
@@ -99,7 +99,7 @@ const arrayofQuestions = [
   },
   //third subject
   {
-    title : 'physics', 
+    title : 'Physics', 
     noOfMcqs : 6, 
     Questions : [
         {
