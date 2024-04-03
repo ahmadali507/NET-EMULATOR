@@ -17,12 +17,14 @@ import { ActiveSave } from '../assets/index.js'
 import { ActiveReview } from '../assets/index.js'
 
 const FinalSection = () => {
+  const {results, setresults} = useContext(myContext);
+  console.log(results)
   // getting the count out to set it ,
   const { questionNo, setQuestionNo } = useContext(myContext);
   const { NoAttempted, setNoAttempted } = useContext(myContext);
   const { review, setReview, attemptedChoice, setAttemptedChoice } = useContext(myContext);
   const { selectedChoice, marks, setmarks } = useContext(myContext);
-  const { TotalMcqs, results, setResults } = useContext(myContext);
+  const { TotalMcqs } = useContext(myContext);
   // when the questionNo is initially zero the prev state is false. i.e. not active.
   const { arrayofQuestions } = useContext(myContext);
 
@@ -30,16 +32,19 @@ const FinalSection = () => {
     subject.Questions.filter((question) => question)
   );
 
+  let dropdown = 'All'
 
   if (attemptedChoice === 'Attempted') {
     filtered = arrayofQuestions.map((subject) =>
       subject.Questions.filter((question) => question.attempted === true)
-    );
+      );
+      dropdown = 'Attempted';
   }
   if (attemptedChoice === 'Unattempted') {
     filtered = arrayofQuestions.map((subject) =>
       subject.Questions.filter((question) => question.attempted === false)
     );
+    dropdown = 'Unattempted'
   }
 
   filtered = filtered.flat();
@@ -49,6 +54,8 @@ const FinalSection = () => {
       subject.Questions.filter((question) => question)
     );
     filtered = filtered.flat();
+    setAttemptedChoice("All")
+    dropdown = 'All'
   }
 
 // segregating the current question then getting the title from the questions 
@@ -125,7 +132,6 @@ console.log(subjectTitle)
   }
   // to set the prevsection buttons to on light we make their state true on each press on next section..
 
-
   const handlefirst = () => {
     setQuestionNo(0);
     // setPrevSectionstatus(false)
@@ -145,23 +151,34 @@ console.log(subjectTitle)
     // the user gets the mark only if the mcqs is not attempte first
     if ((filtered[questionNo].key === selectedChoice) && !(filtered[questionNo].attempted)) {
       setmarks(marks + 1);
+      const subjectIndex = results.findIndex(
+        (result) => result.subject === subjectTitle
+      );
+  
+      // Create a copy of the results array to update the score
+      const updatedResults = [...results];
+  
+      // Increment the score for the corresponding subject
+      updatedResults[subjectIndex] = {
+        ...updatedResults[subjectIndex],
+        score: updatedResults[subjectIndex].score + 1,
+      };
+  
+      // Update the state with the new results array
+      setresults(updatedResults);
       
-      if(results[0]?.subject === subjectTitle){
-        setResults(results[0].score + 1); 
-      }
-      else if(results[1]?.subject === subjectTitle){
-        setResults(results[1].score + 1); 
-      }
-      else if(results[2]?.subject === subjectTitle){
-        setResults(results[2].score + 1); 
-      }
-      else if(results[3]?.subject === subjectTitle){
-        setResults(results[3].score + 1); 
-      }
     }
+    if(selectedChoice === '' && !(filtered[questionNo].attempted))
+    {
+      filtered[questionNo].attempted = false;
+
+    }
+    else
     filtered[questionNo].attempted = true;
   
   }
+
+  // console.log(results);
 
   
   const handleReview = () => {
@@ -172,6 +189,7 @@ console.log(subjectTitle)
   const handlechange = (e) => {
     setAttemptedChoice(e.target.value);
     setQuestionNo(0);
+    e.target.value = dropdown;
 
   }
 
@@ -208,17 +226,12 @@ console.log(subjectTitle)
               {/* Attach onClick event to each option */}
               <option value="All" >All</option>
               <option value="Attempted" >Attempted</option>
-              <option value="Reviewable" >Reviewable</option>
               <option value="Unattempted" >Unattempted</option>
             </select>
 
           </div>
           <div className="buttons-container">
-            {
-
-            }
-            {
-            }
+        
             <div className="buttons-list">
                
               <input

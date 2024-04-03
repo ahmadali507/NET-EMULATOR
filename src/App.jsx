@@ -20,29 +20,28 @@ function App() {
 
  // creating a state of an array of objects that will contain the resullts based on segregation on different subjects. ......
 
- const [results, setResults] = useState([
+ const  [results,setresults] = useState([
      { subject : 'Mathematics' , score : 0},
      { subject : 'English' , score : 0},
      { subject : 'Physics' , score : 0},
      { subject : 'Chemistry' , score : 0}
-    ]);
+ ])
 console.log(results)
 
   return (
     <>
       <myContext.Provider
-
-        value={{ arrayofQuestions, questionNo, setQuestionNo, TotalMcqs, settotalMcqs, results, setResults,
+        value={{ arrayofQuestions, questionNo, setQuestionNo, TotalMcqs, settotalMcqs,
          review, setReview , attemptedChoice, setAttemptedChoice, NoAttempted,setNoAttempted,
-         selectedChoice, setSelectedChoice, marks, setmarks}}>
+         selectedChoice, setSelectedChoice, marks, setmarks, results, setresults}}>
 
         <Header></Header>
         <FirstSection></FirstSection>
         <SecondSection></SecondSection>
         <ThirdSection></ThirdSection>
-        <FinalSection></FinalSection>
+        <FinalSection ></FinalSection>
 
-      </myContext.Provider>
+      </myContext.Provider>f
     </>
   )
 }

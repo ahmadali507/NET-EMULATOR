@@ -7,7 +7,7 @@ const ThirdSection = () => {
 
 
     const { arrayofQuestions,  setSelectedChoice, attemptedChoice } = useContext(myContext);
-    const { questionNo,  setSavebutton } = useContext(myContext);
+    const { questionNo,  setSavebutton , selectedChoice} = useContext(myContext);
 
     let filteredOptions = arrayofQuestions.map((subject) =>
         subject.Questions.filter((question) => question)
@@ -36,6 +36,7 @@ const ThirdSection = () => {
         const value = e.target.value;
         setSelectedChoice(value);
     }
+    console.log(selectedChoice)
     return (
         <div>
             <section id="options-section">
