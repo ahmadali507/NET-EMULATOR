@@ -12,10 +12,11 @@ import { Prev } from "../assets/index.js";
 import { PrevSection } from "../assets/index.js";
 import { Save } from "../assets/index.js";
 import { Review } from "../assets/index.js";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect, useHistory } from "react";
 import myContext from "../Context/conttext.js";
 import { ActiveSave } from '../assets/index.js'
 import { ActiveReview } from '../assets/index.js'
+import TestScores from './TestScores.jsx'
 
 const FinalSection = () => {
   const { results, setresults } = useContext(myContext);
@@ -197,6 +198,52 @@ const FinalSection = () => {
     setQuestionNo(e.target.value - 1);
   }
   // write  a function to generate the 76 options in js
+
+
+const [timeLeft, setTimeLeft]  = useState({
+  hours : 0, 
+  minutes : 0, 
+  seconds : 10
+})  ;
+// now we have to update time in the box 
+useEffect(() => {
+  const interval = setInterval(() => {
+    // Calculate the total remaining time in seconds
+    const totalRemainingSeconds = (timeLeft.hours * 3600) + (timeLeft.minutes * 60) + timeLeft.seconds;
+
+    // Decrease the total remaining time by one second
+    const newTotalRemainingSeconds = totalRemainingSeconds - 1;
+
+    // Calculate the new hours, minutes, and seconds
+    const newHours = Math.floor(newTotalRemainingSeconds / 3600); 
+    const newMinutes = Math.floor((newTotalRemainingSeconds % 3600) / 60);
+    const newSeconds = newTotalRemainingSeconds % 60;
+
+    const routepro = '/TestScores'; 
+
+    // Update the state with the new remaining time
+    setTimeLeft({
+      hours: newHours,
+      minutes: newMinutes,
+      seconds: newSeconds
+    });
+
+    // If the remaining time reaches 0, clear the interval
+    if (newTotalRemainingSeconds === 0) {
+      clearInterval(interval);
+    }
+  }, 1000);
+
+  // Clean up the interval when the component unmounts
+  return () => clearInterval(interval);
+}, [timeLeft]); // Run the effect whenever timeLeft changes
+ // No dependencies, runs only once when component mounts
+console.log(timeLeft);
+
+
+
+
+
   return (
     <div>
       <section id="final-section">
@@ -204,15 +251,15 @@ const FinalSection = () => {
           <div className="dropdown-container">
             <div className="countdown-container">
               <div className="countdown-box">
-                <div className="countdown-number">01</div>
+                <div className="countdown-number">{timeLeft.hours}</div>
               </div>
               <div className="countdown-separator">:</div>
               <div className="countdown-box">
-                <div className="countdown-number">10</div>
+                <div className="countdown-number">{timeLeft.minutes}</div>
               </div>
               <div className="countdown-separator">:</div>
               <div className="countdown-box">
-                <div className="countdown-number">04</div>
+                <div className="countdown-number">{timeLeft.seconds}</div>
               </div>
             </div>
             <select name="status" className="dropdown allDropdown" onChange={handleoptionNo}>

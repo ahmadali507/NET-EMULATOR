@@ -7,25 +7,39 @@ const TestScores = () => {
     const { results } = useContext(myContext);
     console.log(results)
     let scores = results; 
+    let totalScore = 0; 
+    scores.forEach(element => {
+        totalScore += element.score 
+    });
     return (
         <div className="test-scores-container">
-            <h2>Test Scores</h2>
+            <h2 style={{textAlign : 'center'}}>Test Scores</h2>
             <table className="test-scores-table">
                 <thead>
                     <tr>
-                        <th>Subject</th>
-                        <th>Total</th>
+                        <th style={{paddingLeft : '20px'}}>Subject</th>
+                        <th >Total</th>
                         <th>Score</th>
                     </tr>
                 </thead>
                 <tbody>
                     {scores?.map((subject, index) => (
                         <tr key={index}>
-                            <td>{subject.subject}</td>
-                            <td>{subject.total}</td>
-                            <td>{subject.score}</td>
+                            <td style={{paddingLeft : '20px'}}>{subject.subject}</td>
+                            <td style={{paddingLeft : '20px'}}>{subject.total}</td>
+                            <td style={{paddingLeft : '20px'}}>{subject.score}</td>
                         </tr>
                     ))}
+                    <tr>
+                        <td style={{paddingLeft : '20px'}}>Total</td>
+                        <td>20 Marks</td>
+                        <td>{totalScore} Marks</td>
+                    </tr>
+                    <tr>
+                        <td style={{paddingLeft : '20px', fontWeight : '600'}}>Total %</td>
+                        <td style={{paddingLeft : '20px', fontWeight : '600'}}>100 %</td>
+                        <td style={{paddingLeft : '20px', fontWeight : '600'}}>{(totalScore/20)*100} % </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
