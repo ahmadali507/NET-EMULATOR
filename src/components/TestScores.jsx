@@ -5,7 +5,8 @@ import './TestScores.css'; // Import the CSS file
 
 const TestScores = () => {
     const { results } = useContext(myContext);
-    
+    console.log(results)
+    let scores = results; 
     return (
         <div className="test-scores-container">
             <h2>Test Scores</h2>
@@ -13,13 +14,15 @@ const TestScores = () => {
                 <thead>
                     <tr>
                         <th>Subject</th>
+                        <th>Total</th>
                         <th>Score</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {results?.map((subject, index) => (
+                    {scores?.map((subject, index) => (
                         <tr key={index}>
                             <td>{subject.subject}</td>
+                            <td>{subject.total}</td>
                             <td>{subject.score}</td>
                         </tr>
                     ))}
