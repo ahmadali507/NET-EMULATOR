@@ -1,0 +1,25 @@
+.test-scores-container {
+    margin-top: 20px;
+  }
+  
+  .test-scores-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+  }
+  
+  .test-scores-table th,
+  .test-scores-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .test-scores-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .test-scores-table tr:hover {
+    background-color: #f2f2f2;
+  }
+  

@@ -1,5 +1,6 @@
 import React from "react";
 import "./FinalSection.css";
+import { Link } from "react-router-dom";
 // importing images from assets/photos/paths of the images.....
 import { First, active_prev } from "../assets/index.js";
 import { Help } from "../assets/index.js";
@@ -17,7 +18,7 @@ import { ActiveSave } from '../assets/index.js'
 import { ActiveReview } from '../assets/index.js'
 
 const FinalSection = () => {
-  const {results, setresults} = useContext(myContext);
+  const { results, setresults } = useContext(myContext);
   console.log(results)
   // getting the count out to set it ,
   const { questionNo, setQuestionNo } = useContext(myContext);
@@ -37,8 +38,8 @@ const FinalSection = () => {
   if (attemptedChoice === 'Attempted') {
     filtered = arrayofQuestions.map((subject) =>
       subject.Questions.filter((question) => question.attempted === true)
-      );
-      dropdown = 'Attempted';
+    );
+    dropdown = 'Attempted';
   }
   if (attemptedChoice === 'Unattempted') {
     filtered = arrayofQuestions.map((subject) =>
@@ -58,14 +59,14 @@ const FinalSection = () => {
     dropdown = 'All'
   }
 
-// segregating the current question then getting the title from the questions 
-const question = filtered[questionNo];
-// Finding the subject title associated with the question
-const subjectIndex = arrayofQuestions.findIndex((subject) =>
+  // segregating the current question then getting the title from the questions 
+  const question = filtered[questionNo];
+  // Finding the subject title associated with the question
+  const subjectIndex = arrayofQuestions.findIndex((subject) =>
     subject.Questions.some((q) => q.id === question.id)
-);
-const subjectTitle = arrayofQuestions[subjectIndex].title;
-console.log(subjectTitle)
+  );
+  const subjectTitle = arrayofQuestions[subjectIndex].title;
+  console.log(subjectTitle)
 
   // writing the onclick to move the counter.
   const handlenextClick = () => {
@@ -154,33 +155,32 @@ console.log(subjectTitle)
       const subjectIndex = results.findIndex(
         (result) => result.subject === subjectTitle
       );
-  
+
       // Create a copy of the results array to update the score
       const updatedResults = [...results];
-  
+
       // Increment the score for the corresponding subject
       updatedResults[subjectIndex] = {
         ...updatedResults[subjectIndex],
         score: updatedResults[subjectIndex].score + 1,
       };
-  
+
       // Update the state with the new results array
       setresults(updatedResults);
-      
+
     }
-    if(selectedChoice === '' && !(filtered[questionNo].attempted))
-    {
+    if (selectedChoice === '' && !(filtered[questionNo].attempted)) {
       filtered[questionNo].attempted = false;
 
     }
     else
-    filtered[questionNo].attempted = true;
-  
+      filtered[questionNo].attempted = true;
+
   }
 
   // console.log(results);
 
-  
+
   const handleReview = () => {
     setReview(false);
 
@@ -193,7 +193,7 @@ console.log(subjectTitle)
 
   }
 
-  const handleoptionNo = (e) =>{
+  const handleoptionNo = (e) => {
     setQuestionNo(e.target.value - 1);
   }
   // write  a function to generate the 76 options in js
@@ -231,9 +231,9 @@ console.log(subjectTitle)
 
           </div>
           <div className="buttons-container">
-        
+
             <div className="buttons-list">
-               
+
               <input
                 type="image"
                 src={(filtered[questionNo].attempted) ? Save : ActiveSave}
@@ -286,9 +286,10 @@ console.log(subjectTitle)
 
         <div className="finish-test">
           <p className="finishing-paragraph">
-            Click here to <span>FINISH</span> your test!
+            Click here to <Link to="/TestScores"><span>FINISH</span></Link> your test!
           </p>
         </div>
+
       </section>
       <h3 id="ending">
         This demo test is provided solely for demonstration purposes to aid

@@ -7,7 +7,7 @@ import FinalSection from './components/FinalSection'
 import arrayofQuestions from './question'
 import myContext from './Context/conttext'
 import TestScores from './components/TestScores'
-import Home from './Home'
+
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 function App() {
   // this state will keep track of the question to be displayed
@@ -33,8 +33,7 @@ function App() {
 
   return (
     <>
-    <Router>
-      {/* <myContext.Provider
+      <myContext.Provider
         value={{
           arrayofQuestions, questionNo, setQuestionNo, TotalMcqs, settotalMcqs,
           review, setReview, attemptedChoice, setAttemptedChoice, NoAttempted, setNoAttempted,
@@ -47,12 +46,9 @@ function App() {
         <ThirdSection></ThirdSection>
         <FinalSection ></FinalSection>
         {/* <TestScores></TestScores> */}
-      {/* </myContext.Provider> */} 
-          <Routes>
-            <Route path = "/" element = {<Home/>} />
-            <Route path="/testscores" element={<TestScores />} />
-        </Routes>
-      </Router>
+      </myContext.Provider>
+
+  
 
     </>
   )
