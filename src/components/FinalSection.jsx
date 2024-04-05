@@ -205,8 +205,8 @@ const FinalSection = () => {
 
 
   const [timeLeft, setTimeLeft] = useState({
-    hours: 0,
-    minutes: 20,
+    hours: 1,
+    minutes: 4,
     seconds: 0
   })
 

@@ -23,7 +23,7 @@ function App() {
   const [NoAttempted, setNoAttempted] = useState(0);
   const [TotalMcqs, settotalMcqs] = useState(0);
   const [results, setresults] = useState([
-    { subject: 'Mathematics', score: 0, total : 6 , checked : false},
+    { subject: 'Mathematics', score: 0, total : 50 , checked : false},
     { subject: 'English', score: 0    , total : 4 , checked : false},
     { subject: 'Physics', score: 0    , total : 6 , checked : false},
     { subject: 'Chemistry', score: 0  , total : 3 , checked : false}
