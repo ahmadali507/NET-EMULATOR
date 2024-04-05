@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import FirstSection from './components/FirstSection'
 import Header from './components/Header'
@@ -23,18 +23,49 @@ function App() {
   const [NoAttempted, setNoAttempted] = useState(0);
   const [TotalMcqs, settotalMcqs] = useState(0);
   const [results, setresults] = useState([
-    { subject: 'Mathematics', score: 0, total : 6 },
-    { subject: 'English', score: 0    , total : 4 },
-    { subject: 'Physics', score: 0    , total : 6 },
-    { subject: 'Chemistry', score: 0  , total : 3 }
+    { subject: 'Mathematics', score: 0, total : 6 , checked : false},
+    { subject: 'English', score: 0    , total : 4 , checked : false},
+    { subject: 'Physics', score: 0    , total : 6 , checked : false},
+    { subject: 'Chemistry', score: 0  , total : 3 , checked : false}
   ])
+  const [dropdown, setdropdown] = useState('All'); 
+  
+  const [filtered, Setfiltered] = useState([]);
+  
+  useEffect(() => {
+    let newFilteredOptions = arrayofQuestions.map((subject) =>
+      subject.Questions.filter((question) => question)
+    ).flat();
+  
+    if (attemptedChoice === 'Attempted') {
+      newFilteredOptions = newFilteredOptions.filter((question) => question.attempted === true);
+      setdropdown('Attempted');
+    } else if (attemptedChoice === 'Unattempted') {
+      newFilteredOptions = newFilteredOptions.filter((question) => question.attempted === false);
+      setdropdown('Unattempted');
+    }
+  
+    if (newFilteredOptions.length === 0) {
+      newFilteredOptions = arrayofQuestions.map((subject) =>
+        subject.Questions.filter((question) => question)
+      ).flat();
+      setAttemptedChoice('All');
+      setdropdown('All');
+    }
+  
+    Setfiltered(newFilteredOptions);
+  }, [filtered, attemptedChoice]); // Only trigger effect when filteredOptions or attemptedChoice changes
+  
+
+
+
   return (
 
     <myContext.Provider
     value={{
-      arrayofQuestions, questionNo, setQuestionNo, TotalMcqs, settotalMcqs,
+      arrayofQuestions, questionNo, setQuestionNo, TotalMcqs, settotalMcqs, dropdown, setdropdown,
       review, setReview, attemptedChoice, setAttemptedChoice, NoAttempted, setNoAttempted,
-      selectedChoice, setSelectedChoice, marks, setmarks, results, setresults
+      selectedChoice, setSelectedChoice, marks, setmarks, results, setresults, filtered, Setfiltered
     }}>
     <Router>
       <Routes>

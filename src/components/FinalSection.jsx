@@ -28,46 +28,46 @@ const FinalSection = () => {
   const { review, setReview, attemptedChoice, setAttemptedChoice } = useContext(myContext);
   const { selectedChoice, marks, setmarks } = useContext(myContext);
   const { TotalMcqs } = useContext(myContext);
-  // when the questionNo is initially zero the prev state is false. i.e. not active.
+  const {filtered, dropdown} = useContext(myContext);
   const { arrayofQuestions } = useContext(myContext);
 
-  let filtered = arrayofQuestions.map((subject) =>
-    subject.Questions.filter((question) => question)
-  );
+  // let filtered = arrayofQuestions.map((subject) =>
+  //   subject.Questions.filter((question) => question)
+  // );
 
-  let dropdown = 'All'
+  // let dropdown = 'All'
 
-  if (attemptedChoice === 'Attempted') {
-    filtered = arrayofQuestions.map((subject) =>
-      subject.Questions.filter((question) => question.attempted === true)
-    );
-    dropdown = 'Attempted';
-  }
-  if (attemptedChoice === 'Unattempted') {
-    filtered = arrayofQuestions.map((subject) =>
-      subject.Questions.filter((question) => question.attempted === false)
-    );
-    dropdown = 'Unattempted'
-  }
+  // if (attemptedChoice === 'Attempted') {
+  //   filtered = arrayofQuestions.map((subject) =>
+  //     subject.Questions.filter((question) => question.attempted === true)
+  //   );
+  //   dropdown = 'Attempted';
+  // }
+  // if (attemptedChoice === 'Unattempted') {
+  //   filtered = arrayofQuestions.map((subject) =>
+  //     subject.Questions.filter((question) => question.attempted === false)
+  //   );
+  //   dropdown = 'Unattempted'
+  // }
 
-  filtered = filtered.flat();
+  // filtered = filtered.flat();
 
-  if (filtered.length === 0) {
-    filtered = arrayofQuestions.map((subject) =>
-      subject.Questions.filter((question) => question)
-    );
-    filtered = filtered.flat();
-    setAttemptedChoice("All")
-    dropdown = 'All'
-  }
+  // if (filtered.length === 0) {
+  //   filtered = arrayofQuestions.map((subject) =>
+  //     subject.Questions.filter((question) => question)
+  //   );
+  //   filtered = filtered.flat();
+  //   setAttemptedChoice("All")
+  //   dropdown = 'All'
+  // }
 
   // segregating the current question then getting the title from the questions 
   const question = filtered[questionNo];
   // Finding the subject title associated with the question
   const subjectIndex = arrayofQuestions.findIndex((subject) =>
-    subject.Questions.some((q) => q.id === question.id)
+    subject.Questions.some((q) => q.id === question?.id)
   );
-  const subjectTitle = arrayofQuestions[subjectIndex].title;
+  const subjectTitle = arrayofQuestions[subjectIndex]?.title;
   console.log(subjectTitle)
 
   // writing the onclick to move the counter.
@@ -100,13 +100,13 @@ const FinalSection = () => {
     if (questionNo <= 3 && TotalMcqs > 4) {
       setQuestionNo(4);
     }
-    else if (questionNo > 3 && questionNo <= 9 && TotalMcqs > 10) {
-      setQuestionNo(10);
+    else if (questionNo > 3 && questionNo <= 53 && TotalMcqs > 54) {
+      setQuestionNo(54);
     }
-    else if (questionNo > 9 && questionNo <= 15 && TotalMcqs > 16) {
-      setQuestionNo(16);
+    else if (questionNo > 9 && questionNo <= 59 && TotalMcqs > 60) {
+      setQuestionNo(60);
     }
-    else if (questionNo > 15 && questionNo <= 19 && TotalMcqs > 20) {
+    else if (questionNo > 60 && questionNo <= 64 && TotalMcqs > 64) {
       setQuestionNo(0);
     }
     // to set the prevsection buttons to on light we make their state true on each press on next section..
@@ -123,14 +123,14 @@ const FinalSection = () => {
       // setPrevSectionstatus(false);
       // setPrevStatus(false);
     }
-    if (questionNo > 3 && questionNo <= 9) {
+    if (questionNo > 3 && questionNo <= 53) {
       setQuestionNo(0);
     }
-    if (questionNo > 9 && questionNo <= 15) {
+    if (questionNo > 53 && questionNo <= 59) {
       setQuestionNo(4);
     }
-    if (questionNo > 15 && questionNo <= 19) {
-      setQuestionNo(10);
+    if (questionNo > 59 && questionNo <= 63) {
+      setQuestionNo(54);
     }
   }
   // to set the prevsection buttons to on light we make their state true on each press on next section..
@@ -152,7 +152,7 @@ const FinalSection = () => {
     setReview(true);
     setNoAttempted(NoAttempted + 1)
     // the user gets the mark only if the mcqs is not attempte first
-    if ((filtered[questionNo].key === selectedChoice) && !(filtered[questionNo].attempted)) {
+    if ((filtered[questionNo].key === selectedChoice)) {
       setmarks(marks + 1);
       const subjectIndex = results.findIndex(
         (result) => result.subject === subjectTitle
@@ -162,10 +162,13 @@ const FinalSection = () => {
       const updatedResults = [...results];
 
       // Increment the score for the corresponding subject
-      updatedResults[subjectIndex] = {
+      if(!(updatedResults[subjectIndex].checked))
+     { updatedResults[subjectIndex] = {
         ...updatedResults[subjectIndex],
         score: updatedResults[subjectIndex].score + 1,
+        checked : !(updatedResults[subjectIndex].checked)
       };
+    }
 
       // Update the state with the new results array
       setresults(updatedResults);
@@ -287,7 +290,7 @@ const FinalSection = () => {
 
               <input
                 type="image"
-                src={(filtered[questionNo].attempted) ? Save : ActiveSave}
+                src={(filtered[questionNo]?.attempted) ? ActiveSave : Save}
                 alt="save"
                 onClick={handlesave}
                 disabled=""

@@ -7,60 +7,61 @@ const ThirdSection = () => {
 
 
     const { arrayofQuestions,  setSelectedChoice, attemptedChoice } = useContext(myContext);
-    const { questionNo,  setSavebutton , selectedChoice} = useContext(myContext);
+    const { questionNo,  setSavebutton , selectedChoice , filtered, Setfiltered} = useContext(myContext);
 
-    let filteredOptions = arrayofQuestions.map((subject) =>
-        subject.Questions.filter((question) => question)
-    );
+//     let filtered = arrayofQuestions.map((subject) =>
+//         subject.Questions.filter((question) => question)
+//     );
 
-    if (attemptedChoice === 'Attempted') {
-        filteredOptions = arrayofQuestions.map((subject) =>
-        subject.Questions.filter((question) => question.attempted === true)
-        );
-    }
-    if (attemptedChoice === 'Unattempted') {
-        filteredOptions = arrayofQuestions.map((subject) =>
-        subject.Questions.filter((question) => question.attempted === false)
-        );
-    }
-    filteredOptions = filteredOptions.flat();
+//     if (attemptedChoice === 'Attempted') {
+//         filtered = arrayofQuestions.map((subject) =>
+//         subject.Questions.filter((question) => question.attempted === true)
+//         );
+//     }
+//     if (attemptedChoice === 'Unattempted') {
+//         filtered = arrayofQuestions.map((subject) =>
+//         subject.Questions.filter((question) => question.attempted === false)
+//         );
+//     }
+//     filtered = filtered.flat();
 
-  if(filteredOptions.length === 0){
-    filteredOptions = arrayofQuestions.map((subject) =>
-    subject.Questions.filter((question) => question)
-  );
-  filteredOptions = filteredOptions.flat();
-  }
+//   if(filtered.length === 0){
+//     filtered = arrayofQuestions.map((subject) =>
+//     subject.Questions.filter((question) => question)
+//   );
+//   filtered = filtered.flat();
+//   }
 
     const inputcheck = (e) => {
         const value = e.target.value;
         setSelectedChoice(value);
+        filtered[questionNo].attempted = true; 
     }
     console.log(selectedChoice)
     return (
         <div>
             <section id="options-section">
                 <div className="option">
-                    <input type="radio" name="options" onChange={inputcheck} value={filteredOptions[questionNo]?.option1} />
-                    <textarea className="option-text-area" rows="3" spellcheck="false" readonly="" value={filteredOptions[questionNo]?.option1}>
+                    <input type="radio" name="options" onChange={inputcheck} value={filtered[questionNo]?.option1} />
+                    <textarea className="option-text-area" rows="3" spellcheck="false" readonly="" value={filtered[questionNo]?.option1}>
 
-                        {filteredOptions[questionNo]?.option1}
+                        {filtered[questionNo]?.option1}
                     </textarea>
                 </div>
                 <div className="option">
-                    <input type="radio" name="options" onChange={inputcheck} value={filteredOptions[questionNo]?.option2} />
-                    <textarea className="option-text-area" rows="3" spellcheck="false" readonly="" value={filteredOptions[questionNo]?.option2}>
-                        {filteredOptions[questionNo]?.option2}</textarea>
+                    <input type="radio" name="options" onChange={inputcheck} value={filtered[questionNo]?.option2} />
+                    <textarea className="option-text-area" rows="3" spellcheck="false" readonly="" value={filtered[questionNo]?.option2}>
+                        {filtered[questionNo]?.option2}</textarea>
                 </div>
                 <div className="option">
-                    <input type="radio" name="options" onChange={inputcheck} value={filteredOptions[questionNo]?.option3} />
-                    <textarea className="option-text-area" rows="3" spellcheck="false" readonly="" value={filteredOptions[questionNo]?.option3}>
-                        {filteredOptions[questionNo]?.option3}
+                    <input type="radio" name="options" onChange={inputcheck} value={filtered[questionNo]?.option3} />
+                    <textarea className="option-text-area" rows="3" spellcheck="false" readonly="" value={filtered[questionNo]?.option3}>
+                        {filtered[questionNo]?.option3}
                     </textarea>
                 </div>
                 <div className="option">
-                    <input type="radio" name="options" onChange={inputcheck} value={filteredOptions[questionNo]?.option4} />
-                    <textarea className="option-text-area" rows="3" spellcheck="false" readonly="" value={filteredOptions[questionNo]?.option4}>{filteredOptions[questionNo]?.option4}</textarea>
+                    <input type="radio" name="options" onChange={inputcheck} value={filtered[questionNo]?.option4} />
+                    <textarea className="option-text-area" rows="3" spellcheck="false" readonly="" value={filtered[questionNo]?.option4}>{filtered[questionNo]?.option4}</textarea>
                 </div>
 
             </section>
