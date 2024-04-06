@@ -32,7 +32,7 @@ const TestScores = () => {
                     ))}
                     <tr>
                         <td style={{paddingLeft : '20px'}}>Total</td>
-                        <td>20 Marks</td>
+                        <td>200 Marks</td>
                         <td>{totalScore} Marks</td>
                     </tr>
                     <tr>

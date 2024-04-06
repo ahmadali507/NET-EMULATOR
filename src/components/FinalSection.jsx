@@ -97,16 +97,19 @@ const FinalSection = () => {
   };
   // to handle the section shifter where 
   const handdleNextSection = () => {
-    if (questionNo <= 3 && TotalMcqs > 4) {
-      setQuestionNo(4);
+    if (questionNo <= 19 && TotalMcqs > 20) {
+      setQuestionNo(20);
     }
-    else if (questionNo > 3 && questionNo <= 53 && TotalMcqs > 54) {
-      setQuestionNo(54);
+    else if (questionNo > 19 && questionNo <= 99 && TotalMcqs > 100) {
+      setQuestionNo(100);
     }
-    else if (questionNo > 9 && questionNo <= 59 && TotalMcqs > 60) {
-      setQuestionNo(60);
+    else if (questionNo > 99 && questionNo <= 159 && TotalMcqs > 160) {
+      setQuestionNo(160);
     }
-    else if (questionNo > 60 && questionNo <= 64 && TotalMcqs > 64) {
+    else if (questionNo > 159 && questionNo <= 189 && TotalMcqs > 189) {
+      setQuestionNo(190);
+    }
+    else if (questionNo > 189 && questionNo <= 199 && TotalMcqs > 199) {
       setQuestionNo(0);
     }
     // to set the prevsection buttons to on light we make their state true on each press on next section..
@@ -118,19 +121,22 @@ const FinalSection = () => {
 
 
   const handlePrevSection = () => {
-    if (questionNo <= 3) {
+    if (questionNo <= 19) {
       setQuestionNo(0);
       // setPrevSectionstatus(false);
       // setPrevStatus(false);
     }
-    if (questionNo > 3 && questionNo <= 53) {
+    if (questionNo > 19 && questionNo <= 99) {
       setQuestionNo(0);
     }
-    if (questionNo > 53 && questionNo <= 59) {
-      setQuestionNo(4);
+    if (questionNo > 99 && questionNo <= 159) {
+      setQuestionNo(20);
     }
-    if (questionNo > 59 && questionNo <= 63) {
-      setQuestionNo(54);
+    if (questionNo > 159 && questionNo <= 189) {
+      setQuestionNo(100);
+    }
+    if (questionNo > 189 && questionNo <= 199) {
+      setQuestionNo(160);
     }
   }
   // to set the prevsection buttons to on light we make their state true on each press on next section..
@@ -162,21 +168,16 @@ const FinalSection = () => {
       const updatedResults = [...results];
 
       // Increment the score for the corresponding subject
-      if(!(updatedResults[subjectIndex].checked))
-     { updatedResults[subjectIndex] = {
+      updatedResults[subjectIndex] = {
         ...updatedResults[subjectIndex],
         score: updatedResults[subjectIndex].score + 1,
-        checked : !(updatedResults[subjectIndex].checked)
       };
-    }
-
       // Update the state with the new results array
       setresults(updatedResults);
 
     }
     if (selectedChoice === '' && !(filtered[questionNo].attempted)) {
       filtered[questionNo].attempted = false;
-
     }
     else
       filtered[questionNo].attempted = true;
@@ -205,8 +206,8 @@ const FinalSection = () => {
 
 
   const [timeLeft, setTimeLeft] = useState({
-    hours: 1,
-    minutes: 4,
+    hours: 2,
+    minutes: 0,
     seconds: 0
   })
 

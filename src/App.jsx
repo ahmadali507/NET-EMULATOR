@@ -23,20 +23,24 @@ function App() {
   const [NoAttempted, setNoAttempted] = useState(0);
   const [TotalMcqs, settotalMcqs] = useState(0);
   const [results, setresults] = useState([
-    { subject: 'Mathematics', score: 0, total : 50 , checked : false},
-    { subject: 'English', score: 0    , total : 4 , checked : false},
-    { subject: 'Physics', score: 0    , total : 6 , checked : false},
-    { subject: 'Chemistry', score: 0  , total : 3 , checked : false}
-  ])
+    { subject: 'Mathematics', score: 0, total : 80  },
+    { subject: 'English', score: 0    , total : 20  },
+    { subject: 'Physics', score: 0    , total : 60  },
+    { subject: 'Chemistry', score: 0  , total : 30  }, 
+    { subject: 'Intelligence', score : 0, total : 10}
+  ]);
   const [dropdown, setdropdown] = useState('All'); 
   
   const [filtered, Setfiltered] = useState([]);
   
+  
+  
   useEffect(() => {
+
+
     let newFilteredOptions = arrayofQuestions.map((subject) =>
       subject.Questions.filter((question) => question)
     ).flat();
-  
     if (attemptedChoice === 'Attempted') {
       newFilteredOptions = newFilteredOptions.filter((question) => question.attempted === true);
       setdropdown('Attempted');
@@ -52,11 +56,13 @@ function App() {
       setAttemptedChoice('All');
       setdropdown('All');
     }
-  
+    
     Setfiltered(newFilteredOptions);
-  }, [filtered, attemptedChoice]); // Only trigger effect when filteredOptions or attemptedChoice changes
+ 
+  }, [attemptedChoice]); // Only trigger effect when filteredOptions or attemptedChoice changes
   
-
+  console.log(TotalMcqs)
+  
 
 
   return (
