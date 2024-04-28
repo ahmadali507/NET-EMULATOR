@@ -38,7 +38,7 @@ const TestScores = () => {
                     <tr>
                         <td style={{paddingLeft : '20px', fontWeight : '600'}}>Total %</td>
                         <td style={{paddingLeft : '20px', fontWeight : '600'}}>100 %</td>
-                        <td style={{paddingLeft : '20px', fontWeight : '600'}}>{(totalScore/200)*100} % </td>
+                        <td style={{paddingLeft : '20px', fontWeight : '600'}}>{(totalScore/200ccd)*100} % </td>
                     </tr>
                 </tbody>
             </table>
